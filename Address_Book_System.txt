@@ -34,3 +34,31 @@ mysql> show databases;
 | sys                 |
 +---------------------+
 8 rows in set (0.00 sec)
+
+
+================================================================================================================================================
+   UC2 - Ability to create a AddressBook Table with first and last names, address, city,state, zip, phone number and email as its attributes
+================================================================================================================================================
+
+
+mysql> use addressbook_service;
+Database changed
+mysql> CREATE TABLE Address_book (
+    -> first_name VARCHAR(255) NOT NULL,
+    -> last_name VARCHAR(255)NOT NULL,
+    -> address VARCHAR(255) NOT NULL,
+    -> city VARCHAR(255) NOT NULL,
+    -> state VARCHAR(255) NOT NULL,
+    -> zip INT NOT NULL,
+    -> phone_no LONG NOT NULL,
+    -> email_id VARCHAR(255));
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> show tables;
++-------------------------------+
+| Tables_in_addressbook_service |
++-------------------------------+
+| address_book                  |
++-------------------------------+
+1 row in set (0.00 sec)
+
