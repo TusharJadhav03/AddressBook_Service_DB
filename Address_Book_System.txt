@@ -169,4 +169,27 @@ mysql>  SELECT * FROM address_book;
 4 rows in set (0.00 sec)
 
 
+==========================================================================================
+   UC6 - Ability to Retrieve Person belonging to a City or State from the Address Book
+==========================================================================================
+
+mysql> SELECT * FROM address_book WHERE city = "Mumbai" OR state = "MH";
++------------+-----------+----------------+-------------+-------+--------+----------+------------------------------+
+| first_name | last_name | address        | city        | state | zip    | phone_no | email_id                     |
++------------+-----------+----------------+-------------+-------+--------+----------+------------------------------+
+| Tushar     | Jadhav    | Ghatkopar      | Mumbai      | MH    | 400084 | 81083    | tushar.jadhav.work@gmail.com |
+| Vedant     | Gujrati   | Kopar Khairane | Navi Mumbai | MH    | 500456 | 78956    | vedantgujrati@gmail.com      |
+| Vaibhav    | Kumbhar   | Chembur        |  Mumbai     | MH    | 400085 | 45623    | vaibhavkumbhar@gmail.com     |
+| Sayali     | Matale    | Nerul          | Navi Mumbai | MH    | 500567 | 12345    | sayalimatale@gmail.com       |
++------------+-----------+----------------+-------------+-------+--------+----------+------------------------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT * FROM address_book WHERE city = "Mumbai";
++------------+-----------+-----------+--------+-------+--------+----------+------------------------------+
+| first_name | last_name | address   | city   | state | zip    | phone_no | email_id                     |
++------------+-----------+-----------+--------+-------+--------+----------+------------------------------+
+| Tushar     | Jadhav    | Ghatkopar | Mumbai | MH    | 400084 | 81083    | tushar.jadhav.work@gmail.com |
+| Vaibhav    | Kumbhar   | Chembur   | Mumbai | MH    | 400085 | 45623    | vaibhavkumbhar@gmail.com     |
++------------+-----------+-----------+--------+-------+--------+----------+------------------------------+
+2 rows in set (0.00 sec)
 
