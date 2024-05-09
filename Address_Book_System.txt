@@ -228,3 +228,80 @@ mysql> SELECT * FROM address_book WHERE city = "Navi Mumbai" ORDER BY first_name
 | Vedant     | Gujrati   | Kopar Khairane | Navi Mumbai | MH    | 500456 | 78956    | vedantgujrati@gmail.com |
 +------------+-----------+----------------+-------------+-------+--------+----------+-------------------------+
 2 rows in set (0.00 sec)
+
+======================================================================
+   UC9 - Ability to identify each Address Book with name and Type
+======================================================================
+
+mysql> INSERT INTO address_book (first_name,last_name,address,city,state,zip,phone_no,email_id) VALUES
+    -> ("Anjali","Patil","Ghansoli","Navi Mumbai","MH",500789,45632,"anjalipatil@gmail.com"),
+    -> ("Sanket","Kalambaste","Dadar","Mumbai","MH",400456,912358,"sanketkalambaste@gmail.com"),
+    -> ("Sushmita","Pawar","Kurla","Mumbai","MH",400042,810865,"sushmitapawar@gmail.com"),
+    -> ("Pratik","Sawant","Vashi","Navi Mumbai","MH",500245,900256,"pratiksawant@gmail.com");
+Query OK, 4 rows affected (0.01 sec)
+Records: 4  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM address_book;
++------------+------------+----------------+-------------+-------+--------+----------+------------------------------+
+| first_name | last_name  | address        | city        | state | zip    | phone_no | email_id                     |
++------------+------------+----------------+-------------+-------+--------+----------+------------------------------+
+| Tushar     | Jadhav     | Ghatkopar      | Mumbai      | MH    | 400084 | 81083    | tushar.jadhav.work@gmail.com |
+| Vedant     | Gujrati    | Kopar Khairane | Navi Mumbai | MH    | 500456 | 78956    | vedantgujrati@gmail.com      |
+| Vaibhav    | Kumbhar    | Chembur        | Mumbai      | MH    | 400085 | 45623    | vaibhavkumbhar@gmail.com     |
+| Sayali     | Matale     | Nerul          | Navi Mumbai | MH    | 500567 | 12345    | sayalimatale@gmail.com       |
+| Anjali     | Patil      | Ghansoli       | Navi Mumbai | MH    | 500789 | 45632    | anjalipatil@gmail.com        |
+| Sanket     | Kalambaste | Dadar          | Mumbai      | MH    | 400456 | 912358   | sanketkalambaste@gmail.com   |
+| Sushmita   | Pawar      | Kurla          | Mumbai      | MH    | 400042 | 810865   | sushmitapawar@gmail.com      |
+| Pratik     | Sawant     | Vashi          | Navi Mumbai | MH    | 500245 | 900256   | pratiksawant@gmail.com       |
++------------+------------+----------------+-------------+-------+--------+----------+------------------------------+
+8 rows in set (0.00 sec)
+
+mysql> ALTER TABLE address_book ADD type VARCHAR(255) AFTER last_name;
+Query OK, 0 rows affected (0.04 sec)
+
+mysql> UPDATE address_book SET type = "Profession" WHERE first_name = "Pratik";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE address_book SET type = "Family" WHERE first_name = "Sushmita";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE address_book SET type = "Family" WHERE first_name = "Anjali";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE address_book SET type = "Family" WHERE first_name = "Sanket";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE address_book SET type = "Family" WHERE first_name = "Tushar";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE address_book SET type = "Friends" WHERE first_name = "Sayali";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE address_book SET type = "Friends" WHERE first_name = "Vedant";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> UPDATE address_book SET type = "Friends" WHERE first_name = "Vaibhav";
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> SELECT * FROM address_book;
++------------+------------+------------+----------------+-------------+-------+--------+----------+------------------------------+
+| first_name | last_name  | type       | address        | city        | state | zip    | phone_no | email_id                     |
++------------+------------+------------+----------------+-------------+-------+--------+----------+------------------------------+
+| Tushar     | Jadhav     | Family     | Ghatkopar      | Mumbai      | MH    | 400084 | 81083    | tushar.jadhav.work@gmail.com |
+| Vedant     | Gujrati    | Friends    | Kopar Khairane | Navi Mumbai | MH    | 500456 | 78956    | vedantgujrati@gmail.com      |
+| Vaibhav    | Kumbhar    | Friends    | Chembur        | Mumbai      | MH    | 400085 | 45623    | vaibhavkumbhar@gmail.com     |
+| Sayali     | Matale     | Friends    | Nerul          | Navi Mumbai | MH    | 500567 | 12345    | sayalimatale@gmail.com       |
+| Anjali     | Patil      | Family     | Ghansoli       | Navi Mumbai | MH    | 500789 | 45632    | anjalipatil@gmail.com        |
+| Sanket     | Kalambaste | Family     | Dadar          | Mumbai      | MH    | 400456 | 912358   | sanketkalambaste@gmail.com   |
+| Sushmita   | Pawar      | Family     | Kurla          | Mumbai      | MH    | 400042 | 810865   | sushmitapawar@gmail.com      |
+| Pratik     | Sawant     | Profession | Vashi          | Navi Mumbai | MH    | 500245 | 900256   | pratiksawant@gmail.com       |
++------------+------------+------------+----------------+-------------+-------+--------+----------+------------------------------+
+8 rows in set (0.00 sec)
