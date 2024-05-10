@@ -357,3 +357,90 @@ mysql> SELECT * FROM addressbook;
 | 10 | Prajwal    | Hande      | Ghatkopar      | Mumbai      | MH    | 400084 | 88794    | prajwalhade@gmail.com         | Friends    |
 +----+------------+------------+----------------+-------------+-------+--------+----------+-------------------------------+------------+
 10 rows in set (0.00 sec)
+
+
+=============================================================
+   UC12 - Draw the ER Diagram for Address Book Service DB
+=============================================================
+
+
+============================================================================================================================
+   UC13 - Ensure all retrieve queries done especially in UC 6, UC 7, UC 8 and UC 10 are working with new table structure
+============================================================================================================================
+
+mysql> SELECT * FROM addressbook WHERE city = "Mumbai";
++----+------------+------------+-----------+--------+-------+--------+----------+-------------------------------+---------+
+| id | first_name | last_name  | address   | city   | state | zip    | phone_no | email_id                      | type    |
++----+------------+------------+-----------+--------+-------+--------+----------+-------------------------------+---------+
+|  1 | Tushar     | Jadhav     | Ghatkopar | Mumbai | MH    | 400084 | 81083    | tushar.jadhav.work@gmail.com  | Family  |
+|  3 | Vaibhav    | Kumbhar    | Chembur   | Mumbai | MH    | 400085 | 45623    | vaibhavkumbhar@gmail.com      | Friends |
+|  6 | Sanket     | Kalambaste | Dadar     | Mumbai | MH    | 400456 | 912358   | sanketkalambaste@gmail.com    | Family  |
+|  7 | Sushmita   | Pawar      | Kurla     | Mumbai | MH    | 400042 | 810865   | sushmitapawar@gmail.com       | Family  |
+|  9 | Prajwal    | Hande      | Ghatkopar | Mumbai | MH    | 400084 | 88794    | prajwalhade@gmail.com         | Family  |
+| 10 | Prajwal    | Hande      | Ghatkopar | Mumbai | MH    | 400084 | 88794    | prajwalhade@gmail.com         | Friends |
++----+------------+------------+-----------+--------+-------+--------+----------+-------------------------------+---------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM addressbook WHERE state = "MH";;
++----+------------+------------+----------------+-------------+-------+--------+----------+-------------------------------+------------+
+| id | first_name | last_name  | address        | city        | state | zip    | phone_no | email_id                      | type       |
++----+------------+------------+----------------+-------------+-------+--------+----------+-------------------------------+------------+
+|  1 | Tushar     | Jadhav     | Ghatkopar      | Mumbai      | MH    | 400084 | 81083    | tushar.jadhav.work@gmail.com  | Family     |
+|  2 | Vedant     | Gujrati    | Kopar Khairane | Navi Mumbai | MH    | 500456 | 78956    | vedantgujrati@gmail.com       | Friends    |
+|  3 | Vaibhav    | Kumbhar    | Chembur        | Mumbai      | MH    | 400085 | 45623    | vaibhavkumbhar@gmail.com      | Friends    |
+|  4 | Sayali     | Matale     | Nerul          | Navi Mumbai | MH    | 500567 | 12345    | sayalimatale@gmail.com        | Friends    |
+|  5 | Anjali     | Patil      | Ghansoli       | Navi Mumbai | MH    | 500789 | 45632    | anjalipatil@gmail.com         | Family     |
+|  6 | Sanket     | Kalambaste | Dadar          | Mumbai      | MH    | 400456 | 912358   | sanketkalambaste@gmail.com    | Family     |
+|  7 | Sushmita   | Pawar      | Kurla          | Mumbai      | MH    | 400042 | 810865   | sushmitapawar@gmail.com       | Family     |
+|  8 | Pratik     | Sawant     | Vashi          | Navi Mumbai | MH    | 500245 | 900256   | pratiksawant@gmail.com        | Profession |
+|  9 | Prajwal    | Hande      | Ghatkopar      | Mumbai      | MH    | 400084 | 88794    | prajwalhade@gmail.com         | Family     |
+| 10 | Prajwal    | Hande      | Ghatkopar      | Mumbai      | MH    | 400084 | 88794    | prajwalhade@gmail.com         | Friends    |
++----+------------+------------+----------------+-------------+-------+--------+----------+-------------------------------+------------+
+10 rows in set (0.00 sec)
+
+mysql> SELECT city,state,type, COUNT(*) AS Address_Count FROM addressbook GROUP BY city,state,type;
++-------------+-------+------------+---------------+
+| city        | state | type       | Address_Count |
++-------------+-------+------------+---------------+
+| Mumbai      | MH    | Family     |             4 |
+| Navi Mumbai | MH    | Friends    |             2 |
+| Mumbai      | MH    | Friends    |             2 |
+| Navi Mumbai | MH    | Family     |             1 |
+| Navi Mumbai | MH    | Profession |             1 |
++-------------+-------+------------+---------------+
+5 rows in set (0.00 sec)
+
+mysql> SELECT * FROM addressbook WHERE city = "Mumbai" ORDER BY first_name;
++----+------------+------------+-----------+--------+-------+--------+----------+-------------------------------+---------+
+| id | first_name | last_name  | address   | city   | state | zip    | phone_no | email_id                      | type    |
++----+------------+------------+-----------+--------+-------+--------+----------+-------------------------------+---------+
+|  9 | Prajwal    | Hande      | Ghatkopar | Mumbai | MH    | 400084 | 88794    | prajwalhade@gmail.com         | Family  |
+| 10 | Prajwal    | Hande      | Ghatkopar | Mumbai | MH    | 400084 | 88794    | prajwalhade@gmail.com         | Friends |
+|  6 | Sanket     | Kalambaste | Dadar     | Mumbai | MH    | 400456 | 912358   | sanketkalambaste@gmail.com    | Family  |
+|  7 | Sushmita   | Pawar      | Kurla     | Mumbai | MH    | 400042 | 810865   | sushmitapawar@gmail.com       | Family  |
+|  1 | Tushar     | Jadhav     | Ghatkopar | Mumbai | MH    | 400084 | 81083    | tushar.jadhav.work@gmail.com  | Family  |
+|  3 | Vaibhav    | Kumbhar    | Chembur   | Mumbai | MH    | 400085 | 45623    | vaibhavkumbhar@gmail.com      | Friends |
++----+------------+------------+-----------+--------+-------+--------+----------+-------------------------------+---------+
+6 rows in set (0.00 sec)
+
+mysql> SELECT * FROM addressbook WHERE city = "Navi Mumbai" ORDER BY first_name;
++----+------------+-----------+----------------+-------------+-------+--------+----------+-------------------------+------------+
+| id | first_name | last_name | address        | city        | state | zip    | phone_no | email_id                | type       |
++----+------------+-----------+----------------+-------------+-------+--------+----------+-------------------------+------------+
+|  5 | Anjali     | Patil     | Ghansoli       | Navi Mumbai | MH    | 500789 | 45632    | anjalipatil@gmail.com   | Family     |
+|  8 | Pratik     | Sawant    | Vashi          | Navi Mumbai | MH    | 500245 | 900256   | pratiksawant@gmail.com  | Profession |
+|  4 | Sayali     | Matale    | Nerul          | Navi Mumbai | MH    | 500567 | 12345    | sayalimatale@gmail.com  | Friends    |
+|  2 | Vedant     | Gujrati   | Kopar Khairane | Navi Mumbai | MH    | 500456 | 78956    | vedantgujrati@gmail.com | Friends    |
++----+------------+-----------+----------------+-------------+-------+--------+----------+-------------------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> SELECT type,COUNT(type) FROM addressbook GROUP BY type;
++------------+-------------+
+| type       | COUNT(type) |
++------------+-------------+
+| Family     |           5 |
+| Friends    |           4 |
+| Profession |           1 |
++------------+-------------+
+3 rows in set (0.00 sec)
+
