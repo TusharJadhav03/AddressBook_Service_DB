@@ -329,3 +329,31 @@ mysql> SELECT type,COUNT(type) FROM addressbook GROUP BY type;
 | Profession |           1 |
 +------------+-------------+
 3 rows in set (0.00 sec)
+
+=============================================================
+   UC11 - Ability to add person to both Friend and Family
+=============================================================
+
+
+mysql> INSERT INTO addressbook (first_name,last_name,address,city,state,zip,phone_no,email_id,type) VALUES ("Prajwal","Hande","Ghatkopar","Mumbai","MH",400084,88794,"prajwalhade@gmail.com","Family");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> INSERT INTO addressbook (first_name,last_name,address,city,state,zip,phone_no,email_id,type) VALUES ("Prajwal","Hande","Ghatkopar","Mumbai","MH",400084,88794,"prajwalhade@gmail.com","Friends");
+Query OK, 1 row affected (0.01 sec)
+
+mysql> SELECT * FROM addressbook;
++----+------------+------------+----------------+-------------+-------+--------+----------+-------------------------------+------------+
+| id | first_name | last_name  | address        | city        | state | zip    | phone_no | email_id                      | type       |
++----+------------+------------+----------------+-------------+-------+--------+----------+-------------------------------+------------+
+|  1 | Tushar     | Jadhav     | Ghatkopar      | Mumbai      | MH    | 400084 | 81083    | tushar.jadhav.work@gmail.com  | Family     |
+|  2 | Vedant     | Gujrati    | Kopar Khairane | Navi Mumbai | MH    | 500456 | 78956    | vedantgujrati@gmail.com       | Friends    |
+|  3 | Vaibhav    | Kumbhar    | Chembur        | Mumbai      | MH    | 400085 | 45623    | vaibhavkumbhar@gmail.com      | Friends    |
+|  4 | Sayali     | Matale     | Nerul          | Navi Mumbai | MH    | 500567 | 12345    | sayalimatale@gmail.com        | Friends    |
+|  5 | Anjali     | Patil      | Ghansoli       | Navi Mumbai | MH    | 500789 | 45632    | anjalipatil@gmail.com         | Family     |
+|  6 | Sanket     | Kalambaste | Dadar          | Mumbai      | MH    | 400456 | 912358   | sanketkalambaste@gmail.com    | Family     |
+|  7 | Sushmita   | Pawar      | Kurla          | Mumbai      | MH    | 400042 | 810865   | sushmitapawar@gmail.com       | Family     |
+|  8 | Pratik     | Sawant     | Vashi          | Navi Mumbai | MH    | 500245 | 900256   | pratiksawant@gmail.com        | Profession |
+|  9 | Prajwal    | Hande      | Ghatkopar      | Mumbai      | MH    | 400084 | 88794    | prajwalhade@gmail.com         | Family     |
+| 10 | Prajwal    | Hande      | Ghatkopar      | Mumbai      | MH    | 400084 | 88794    | prajwalhade@gmail.com         | Friends    |
++----+------------+------------+----------------+-------------+-------+--------+----------+-------------------------------+------------+
+10 rows in set (0.00 sec)
